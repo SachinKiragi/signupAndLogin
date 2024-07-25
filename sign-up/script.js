@@ -17,7 +17,7 @@ let user = {
     email: "",
     gender: "",
     phone: "",
-    passwerd: ""
+    password: ""
 };
 
 function isEmailValid(email){
@@ -127,7 +127,7 @@ passwordEl.addEventListener('keyup', (e) => {
 
 
 function isFormValid(){
-    if(emailValidityEl.innerText=="Valid" && phoneValidityEl.innerText=="Valid"){
+    if(emailValidityEl.innerText=="Valid" && phoneValidityEl.innerText=="Valid" && user.password && user.gender!=-1 && user.username){
         return 1;
     } else{
         return 0;
@@ -144,10 +144,7 @@ function showUserNameError(){
     spanEl.id = 'error-msg';
     spanEl.innerText = "username already exists! plz choose some other name";
     formEl.insertBefore(spanEl, submitBtnEl);
-
-    setTimeout(()=>{
-        formEl.removeChild(document.querySelector('#error-msg'));
-    }, 4000)
+   
 }
 
 function isUserNameUnique(username){
@@ -160,20 +157,47 @@ function isUserNameUnique(username){
     return 1;
 }
 
+const eyeEl = document.querySelector('.eye');
+eyeEl.addEventListener('click', (e) => {
+
+    if(eyeEl.classList.contains('ri-eye-off-fill')){
+        eyeEl.classList.add('ri-eye-fill')
+        eyeEl.classList.remove('ri-eye-off-fill');
+        formEl.password.type = "text";
+    } else{
+        eyeEl.classList.add('ri-eye-off-fill');
+        eyeEl.classList.remove('ri-eye-fill')
+        formEl.password.type = "password";
+
+    }
+});
+
+
 
 submitBtnEl.addEventListener('click', (e) => {
+    e.preventDefault();
     user.username = userNameEl.value;
     user.email = emailEl.value;
     user.gender = getGender();
     user.phone = phoneEl.value;
-    user.passwerd = passwordEl;
+    user.password = passwordEl.value;
+    console.log("=> ", user.password);
 
-    
-    if(user.username && !isUserNameUnique(user.username) || isFormValid()){
-        localStorage.setItem(user.username, user);
-        location.reload();
+    if(!isUserNameUnique(user.username)){
+        setTimeout(function(){
+             formEl.removeChild(document.querySelector('#error-msg'));
+        }, 3000);
     } else{
-        alert(`plz fill details correctly`);
+        if(isFormValid()){
+            localStorage.setItem(user.username, JSON.stringify(user));
+            alert("signed up successfully");
+            location.reload();
+            window.location.href = '/chatWithStrangers/log-in/index.html';
+        } else{
+            alert(`plz fill details correctly`);
+        }
     }
-})
+});
 
+
+// localStorage.clear();

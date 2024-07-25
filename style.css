@@ -95,3 +95,57 @@
     font-size: 1.2rem;
     cursor: pointer;
 }
+
+#error-msg{
+    text-align: center;
+    font-weight: 500;
+    letter-spacing: 0.04rem;
+    color: rgba(255, 0, 0, 0.803);
+    animation: vibrate 0.5s;
+}
+
+@keyframes vibrate {
+    0%{
+        margin: 0;
+    }
+    10%{
+        margin-right: 0.1rem;
+        margin-left: -0.1rem;
+    }
+    20%{
+        margin-right: 0%;
+        margin-left: 0rem;
+    }
+    30%{
+        margin-right: -0.1rem;
+        margin-left: 0.1rem;
+    }
+    40%{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    50%{
+        margin-right: 0.1rem;
+        margin-left: -0.1rem;
+    }
+    60%{
+        margin-right: 0%;
+        margin-left: 0rem;
+    }
+    70%{
+        margin-right: -0.1rem;
+        margin-left: 0.1rem;
+    }
+    80%{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    90%{
+        margin-right: 0.1rem;
+        margin-left: -0.1rem;
+    }
+    100%{
+        margin-right: 0%;
+        margin-left: 0rem;
+    }
+}

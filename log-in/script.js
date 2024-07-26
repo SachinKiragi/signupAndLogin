@@ -36,6 +36,25 @@ function isDataValid(){
     return valid;
 }
 
+
+
+const popUpEl = document.querySelector('#pop-up-submit');
+const popMsgEle = document.querySelector('#done-msg');
+
+
+function showPopUp(){
+    popUpEl.classList.add('pop-up')
+    setTimeout(()=>{
+        popMsgEle.style.display = "block";
+    },300)
+
+}
+
+function hidePopUp(){
+    popUpEl.classList.remove('pop-up')
+        popMsgEle.style.display = "none";
+}
+
 submitBtnEl.addEventListener('click', (e) => {
     e.preventDefault();
     user.username = formEl.username.value;
@@ -48,8 +67,13 @@ submitBtnEl.addEventListener('click', (e) => {
                 formEl.removeChild(document.querySelector('#error-msg'));
             }, 3000);
         } else{
-            alert("logged in successfully");
-            location.reload();
+            showPopUp();
+            setTimeout(hidePopUp, 2000);
+            
+            setTimeout((e)=>{
+                alert("logged in successfully");
+                location.reload();
+            }, 3000)
         }
     }
    

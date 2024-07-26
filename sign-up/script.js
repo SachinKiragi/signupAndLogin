@@ -173,6 +173,23 @@ eyeEl.addEventListener('click', (e) => {
 });
 
 
+const popUpEl = document.querySelector('#pop-up-submit');
+const popMsgEle = document.querySelector('#done-msg');
+
+
+function showPopUp(){
+    popUpEl.classList.add('pop-up')
+    setTimeout(()=>{
+        popMsgEle.style.display = "block";
+    },300)
+
+}
+
+function hidePopUp(){
+    popUpEl.classList.remove('pop-up')
+        popMsgEle.style.display = "none";  
+
+}
 
 submitBtnEl.addEventListener('click', (e) => {
     e.preventDefault();
@@ -190,9 +207,13 @@ submitBtnEl.addEventListener('click', (e) => {
     } else{
         if(isFormValid()){
             localStorage.setItem(user.username, JSON.stringify(user));
-            alert("signed up successfully");
-            location.reload();
-            window.location.href = '/chatWithStrangers/log-in/index.html';
+            // alert("signed up successfully");
+            showPopUp();
+            setTimeout(hidePopUp, 2000);
+            setTimeout(() => {
+                location.reload();
+                window.location.href = '../log-in/index.html';
+            }, 3000)
         } else{
             alert(`plz fill details correctly`);
         }

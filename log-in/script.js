@@ -52,7 +52,8 @@ function showPopUp(){
 
 function hidePopUp(){
     popUpEl.classList.remove('pop-up')
-        popMsgEle.style.display = "none";
+    popMsgEle.style.display = "none";
+
 }
 
 submitBtnEl.addEventListener('click', (e) => {
@@ -68,12 +69,11 @@ submitBtnEl.addEventListener('click', (e) => {
             }, 3000);
         } else{
             showPopUp();
-            setTimeout(hidePopUp, 2000);
-            
-            setTimeout((e)=>{
-                alert("logged in successfully");
+            setTimeout(()=>{
+                 hidePopUp();
                 location.reload();
-            }, 3000)
+            }, 2000);
+            
         }
     }
    

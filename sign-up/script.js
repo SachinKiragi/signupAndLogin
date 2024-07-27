@@ -209,11 +209,11 @@ submitBtnEl.addEventListener('click', (e) => {
             localStorage.setItem(user.username, JSON.stringify(user));
             // alert("signed up successfully");
             showPopUp();
-            setTimeout(hidePopUp, 2000);
-            setTimeout(() => {
+            setTimeout(()=>{
+                hidePopUp()
                 location.reload();
                 window.location.href = '../log-in/index.html';
-            }, 3000)
+            }, 2000);
         } else{
             alert(`plz fill details correctly`);
         }
